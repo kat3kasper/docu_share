@@ -1,0 +1,6 @@
+<h1 class="text-center">Upload your document</h1>
+
+<%= form_with model: @document do |form| %>
+  <%= form.file_field :file %>
+  <%= form.submit %>
+<% end %>
