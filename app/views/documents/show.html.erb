@@ -1,10 +1,14 @@
+<%# TODO: abstact out Docushare "logo" to be shared across screens %>
 <h1 class="text-3xl font-bold text-center mb-3">DocuShare</h1>
 <div class="bg-white rounded-lg mx-20 mt-5 text-slate-900 flex flex-col p-4">
   <p class="font-semibold text-gray-900">Filename</p>
   <p><%= @document.file.filename %></p>
-  <p class="font-semibold mt-2">URL for sharing</p>
+  <p class="font-semibold mt-2 text-gray-900">URL for sharing</p>
   <div data-controller="clipboard">
     <span data-clipboard-target="source"><%=url_for(action: 'share', controller: 'documents', shared_id: @document.shared_id, only_path: false)%></span>
     <button data-action="clipboard#copy" data-clipboard-target="button" class="bg-sky-600 hover:bg-sky-600/80 rounded-full w-fit py-1 px-5 m-auto text-white font-bold">Copy to Clipboard</button>
   </div>
+  <p class="font-semibold mt-2 text-gray-900">Delete</p>
+  <%# Add button class for reuse %>
+  <%= button_to "Delete file", document_path(@document), method: :delete, data: { confirm: "Are you sure?" }, class: "bg-red-700 hover:bg-red-700/80 rounded-full w-fit py-1 px-5 text-white font-bold" %>
 </div>

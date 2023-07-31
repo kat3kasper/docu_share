@@ -1,4 +1,8 @@
 class DocumentsController < ApplicationController
+  # TODO add index page with all documents
+  def index
+  end
+
   def new
     @document = Document.new
   end
@@ -10,6 +14,12 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+  end
+
+  def destroy
+    @document = Document.find(params[:id])
+    @document.destroy
+    redirect_to new_document_path, notice: 'Document was successfully deleted.' #TODO: add notice
   end
 
   def share
