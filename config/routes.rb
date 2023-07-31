@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "documents#new"
 
+  get '/documents/share/:shared_id', to: 'documents#share'
+
   resources :documents
 end
