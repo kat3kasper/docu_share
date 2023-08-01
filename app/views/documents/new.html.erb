@@ -1,4 +1,7 @@
-<h2 class="text-center text-slate-600">Get an easy to share link by uploading your file here.</h2>
+<h2 class="text-center text-lg text-slate-600">Get an easy to share link by uploading your file here.</h2>
+<% unless user_signed_in? %>
+  <p class="text-center text-yellow-700">Note: If you want to access you document later, please register.</p>
+<% end %>
 
 <div class="mx-20 mt-5 text-slate-900 p-4">
   <%= form_with model: @document, class: "flex flex-col" do |form| %>
