@@ -3,16 +3,17 @@
 <div class="bg-white rounded-lg mx-20 mt-5 text-slate-900 flex flex-col p-4">
   <p class="font-semibold text-gray-900">Filename</p>
   <p><%= @document.file.filename %></p>
+
   <p class="font-semibold mt-2 text-gray-900">URL for sharing</p>
   <div data-controller="clipboard">
     <span data-clipboard-target="source"><%=url_for(action: 'share', controller: 'documents', shared_id: @document.shared_id, only_path: false)%></span>
-    <button data-action="clipboard#copy" data-clipboard-target="button" class="bg-sky-600 hover:bg-sky-600/80 rounded-full w-fit py-1 px-5 m-auto text-white font-bold">Copy to Clipboard</button>
+    <button data-action="clipboard#copy" data-clipboard-target="button" class="btn-primary">Copy to Clipboard</button>
   </div>
+
   <p class="font-semibold mt-2 text-gray-900">Delete</p>
-  <%# Add button class for reuse %>
-  <%= button_to "Delete file", document_path(@document), method: :delete, class: "bg-red-700 hover:bg-red-700/80 rounded-full w-fit py-1 px-5 text-white font-bold" %>
+  <%= button_to "Delete file", document_path(@document), method: :delete, class: "btn-warning" %>
 
   <div class="m-auto">
-    <%= button_to "+ Create another link", new_document_path, method: :get, class: "bg-green-700 hover:bg-green-700/80 rounded-full w-fit py-1 px-5 text-white font-bold" %>
+    <%= button_to "+ Create another link", new_document_path, method: :get, class: "btn-success" %>
   </div>
 </div>
