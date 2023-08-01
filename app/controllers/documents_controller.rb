@@ -1,7 +1,12 @@
 class DocumentsController < ApplicationController
   # TODO add index page with all documents
   def index
-    @documents = current_user.documents
+    if user_signed_in?
+      # TODO - fix n+1 query
+      @documents = current_user.documents.includes(:file_attachment)
+    else
+      redirect_to new_document_path
+    end
   end
 
   def new

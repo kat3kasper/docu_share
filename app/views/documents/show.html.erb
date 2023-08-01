@@ -5,13 +5,16 @@
   <p class="font-semibold mt-2 text-gray-900">URL for sharing</p>
   <div data-controller="clipboard">
     <span data-clipboard-target="source"><%=url_for(action: 'share', controller: 'documents', shared_id: @document.shared_id, only_path: false)%></span>
-    <button data-action="clipboard#copy" data-clipboard-target="button" class="btn-primary">Copy to Clipboard</button>
+    <button data-action="clipboard#copy" data-clipboard-target="button" class="btn-secondary">Copy to Clipboard</button>
   </div>
 
   <p class="font-semibold mt-2 text-gray-900">Delete</p>
   <%= button_to "Delete file", document_path(@document), method: :delete, class: "btn-warning" %>
 
-  <div class="m-auto">
+  <div class="m-auto flex mt-10">
+    <% if user_signed_in? %>
+      <%= button_to "View all documents", documents_path, method: :get, class: "btn-primary mr-4" %>
+    <% end %>
     <%= button_to "+ Create another link", new_document_path, method: :get, class: "btn-success" %>
   </div>
 </div>

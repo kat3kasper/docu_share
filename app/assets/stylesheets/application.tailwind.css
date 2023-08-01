@@ -13,6 +13,10 @@
     @apply btn bg-sky-600 hover:bg-sky-600/80;
   }
 
+  .btn-secondary {
+    @apply btn bg-sky-100 text-sky-700 hover:bg-sky-200;
+  }
+
   .btn-warning {
     @apply btn bg-red-700 hover:bg-red-700/80;
   }
