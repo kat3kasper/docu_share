@@ -30,12 +30,21 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+
+    if @document.user.present? && @document.user != current_user
+      redirect_to root_path, alert: 'Unauthorized' and return
+    end
   end
 
   def destroy
     @document = Document.find(params[:id])
+
+    if @document.user.present? && @document.user != current_user
+      redirect_to root_path, alert: 'Unauthorized' and return
+    end
+
     @document.destroy
-    redirect_to new_document_path, notice: 'Document was successfully deleted.'
+    redirect_to root_path, notice: 'Document was successfully deleted.'
   end
 
   def share
