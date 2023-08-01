@@ -1,6 +1,12 @@
 class DocumentsController < ApplicationController
   # TODO add index page with all documents
   def index
+    if user_signed_in?
+      # TODO - fix n+1 query
+      @documents = current_user.documents.includes(:file_attachment)
+    else
+      redirect_to new_document_path
+    end
   end
 
   def new
@@ -10,6 +16,7 @@ class DocumentsController < ApplicationController
   def create
     if document_params_present?
       @document = Document.new(document_params)
+      @document.user = current_user if user_signed_in?
 
       if @document.save
         redirect_to @document
@@ -23,12 +30,21 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+
+    if @document.user.present? && @document.user != current_user
+      redirect_to root_path, alert: 'Unauthorized' and return
+    end
   end
 
   def destroy
     @document = Document.find(params[:id])
+
+    if @document.user.present? && @document.user != current_user
+      redirect_to root_path, alert: 'Unauthorized' and return
+    end
+
     @document.destroy
-    redirect_to new_document_path, notice: 'Document was successfully deleted.'
+    redirect_to root_path, notice: 'Document was successfully deleted.'
   end
 
   def share

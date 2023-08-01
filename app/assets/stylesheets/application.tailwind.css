@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  a {
+    @apply text-blue-600;
+  }
+
+  input[type="submit"] {
+    @apply cursor-pointer;
+  }
+}
 
 
 @layer components {
@@ -11,6 +20,10 @@
 
   .btn-primary {
     @apply btn bg-sky-600 hover:bg-sky-600/80;
+  }
+
+  .btn-secondary {
+    @apply btn bg-sky-100 text-sky-700 hover:bg-sky-200;
   }
 
   .btn-warning {
