@@ -7,6 +7,7 @@ class DocumentsController < ApplicationController
     @document = Document.new
   end
 
+  # TODO add error handling with parameter missing
   def create
     document = Document.create!(document_params)
     redirect_to document_path(document)
