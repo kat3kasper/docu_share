@@ -10,5 +10,9 @@
   </div>
   <p class="font-semibold mt-2 text-gray-900">Delete</p>
   <%# Add button class for reuse %>
-  <%= button_to "Delete file", document_path(@document), method: :delete, data: { confirm: "Are you sure?" }, class: "bg-red-700 hover:bg-red-700/80 rounded-full w-fit py-1 px-5 text-white font-bold" %>
+  <%= button_to "Delete file", document_path(@document), method: :delete, class: "bg-red-700 hover:bg-red-700/80 rounded-full w-fit py-1 px-5 text-white font-bold" %>
+
+  <div class="m-auto">
+    <%= button_to "+ Create another link", new_document_path, method: :get, class: "bg-green-700 hover:bg-green-700/80 rounded-full w-fit py-1 px-5 text-white font-bold" %>
+  </div>
 </div>

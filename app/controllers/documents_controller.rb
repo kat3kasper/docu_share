@@ -7,10 +7,18 @@ class DocumentsController < ApplicationController
     @document = Document.new
   end
 
-  # TODO add error handling with parameter missing
   def create
-    document = Document.create!(document_params)
-    redirect_to document_path(document)
+    if document_params_present?
+      @document = Document.new(document_params)
+
+      if @document.save
+        redirect_to @document
+      else
+        render :new
+      end
+    else
+      redirect_to new_document_path, alert: 'No document data submitted.'
+    end
   end
 
   def show
@@ -20,7 +28,7 @@ class DocumentsController < ApplicationController
   def destroy
     @document = Document.find(params[:id])
     @document.destroy
-    redirect_to new_document_path, notice: 'Document was successfully deleted.' #TODO: add notice
+    redirect_to new_document_path, notice: 'Document was successfully deleted.'
   end
 
   def share
@@ -40,5 +48,9 @@ class DocumentsController < ApplicationController
   private
     def document_params
       params.require(:document).permit(:file)
+    end
+
+    def document_params_present?
+      params.key?(:document)
     end
 end

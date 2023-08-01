@@ -12,6 +12,18 @@
   </head>
 
   <body class="bg-slate-800 text-white">
+    <% if flash[:alert] %>
+      <div class="bg-red-300 text-slate-900 text-center">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <% if flash[:notice] %>
+      <div class="bg-green-300 text-slate-900 text-center">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
     <main class="container mx-auto mt-28 px-5">
       <%= yield %>
     </main>
