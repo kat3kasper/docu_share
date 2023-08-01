@@ -4,4 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable
   # TODO: reinstate :recoverable once mailer setup
+
+  has_many :documents
 end

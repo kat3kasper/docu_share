@@ -1,6 +1,7 @@
 class DocumentsController < ApplicationController
   # TODO add index page with all documents
   def index
+    @documents = current_user.documents
   end
 
   def new
@@ -10,6 +11,7 @@ class DocumentsController < ApplicationController
   def create
     if document_params_present?
       @document = Document.new(document_params)
+      @document.user = current_user if user_signed_in?
 
       if @document.save
         redirect_to @document
